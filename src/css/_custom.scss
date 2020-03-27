@@ -1,0 +1,15 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+html {
+  font-size: 1rem;
+}
+@include media-breakpoint-down(sm) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+@include media-breakpoint-down(sm){
+    .removeFromFavoritesButton{
+        font-size: 0.7rem;
+    }
+}

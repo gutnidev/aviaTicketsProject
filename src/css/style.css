@@ -1,0 +1,47 @@
+/*Делаю инпуты красивыми*/
+.inputBorder{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom-color: #6f5bff;
+}
+.inputBorder:focus{
+	border-bottom-color: red;
+	transition:border-bottom-color 1.2s;
+}
+/*Подгоняю менюшку автокомплита*/
+#autocompleteDepart + div{
+		max-width: 100%;
+	max-height: 12em;
+	overflow: auto;
+}
+#autocompleteDepart + div button{
+	white-space: pre-wrap;
+}
+#searchForm{
+	position: relative;
+}
+
+/*ПОдгоняю билетик*/
+.ticketAirlineName{
+	vertical-align: center;
+}
+
+.ticketAirlineImg{
+	max-height: 5rem;
+}
+/*Собщение, когда билетов не нашлось*/
+#noTicketsMsg{
+	height: 5rem;
+}
+/*Тут я подгоняю коллапс с избранным*/
+#favoritesContainer{
+	background-color: rgba(166, 213, 192, 0.6);
+	pointer-events: none;
+}
+.removeFromFavoritesButton{
+	pointer-events: auto;
+}
+#collapseFavoritesID{
+	z-index: 5000;
+}
