@@ -122,5 +122,5 @@
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[hash].js',
     },
-    mode: 'development',
+    mode: 'production',
   };
