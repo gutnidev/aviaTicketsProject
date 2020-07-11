@@ -9,6 +9,7 @@
 	border-bottom-color: red;
 	transition:border-bottom-color 1.2s;
 }
+
 /*Подгоняю менюшку автокомплита*/
 #autocompleteDepart + div{
 		max-width: 100%;
@@ -30,10 +31,12 @@
 .ticketAirlineImg{
 	max-height: 5rem;
 }
+
 /*Собщение, когда билетов не нашлось*/
 #noTicketsMsg{
 	height: 5rem;
 }
+
 /*Тут я подгоняю коллапс с избранным*/
 #favoritesContainer{
 	background-color: rgba(166, 213, 192, 0.6);

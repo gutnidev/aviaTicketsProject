@@ -16,6 +16,10 @@ class CurrencyUI {
     return this.currency.value;
   }
 
+  computedSign(value) {
+    return this.dictionary[value] || ' ';
+  }
+
   // ? Получаем знак денюжки
   get moneySighn() {
     return this._moneySighn;

@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function initApp() {
     // ? Инитим всякое
     mySpinner.init();
+    favoritesStore.init();
     // ? Выводим Спиннеры на деактивированых инпутах пока мы не запихнем в них наши красивые объекты, которые обработаем после того, как получим от сервера
     mySpinner.showSpinnerInput();
     await locations.init();
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return_date,
       currency,
     });
+    locations.lastSearch.forEach(ticket => ticket.currency = currency);
     // ? Рендерим билеты
     ticketsUI.renderTickets(locations.lastSearch);
     // ?Спрятали лоадер
@@ -78,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ticketDOMObject = e.target.closest('.ticketCard');
     // ?Нашли объект билета в подобающем виде
     const ticketCustomObject = locations.getTicketObjectById(ticketDOMObject.id);
+    console.log(ticketDOMObject);
     // ? Убираю col, в котором содержится ДОМ объект билетика вместе с билетиком :( Фактически удаляю билет со странички
     ticketDOMObject.parentElement.remove();
     // ? Там я в объект избранного кладу наш найенный объект билета и вывожу на страничку в коллапс билет, который был избран

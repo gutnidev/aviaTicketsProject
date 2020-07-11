@@ -100,6 +100,7 @@ class Locations {
 
   getTicketObjectById(_id) {
     const ticket = this.lastSearch.filter((ticket) => ticket.uniqueId === _id);
+    console.log(ticket[0]);
     return ticket[0];
   }
 

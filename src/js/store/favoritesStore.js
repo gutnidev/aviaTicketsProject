@@ -1,16 +1,28 @@
 import currencyUI from '../vievs/currency';
+import localStorePlugin from "../../plugins/localStorePlugin";
 
 class FavoritesStore {
   constructor() {
-    this._favoriteTickets = [];
+    this._favoriteTickets = localStorePlugin.getFromLocal();
     this._favoritesContainer = document.getElementById('favoritesContainer');
     this.collapseFavorites = document.getElementById('collapseFavoritesID');
     this.favoritesButton = document.getElementById('showFavoritesButton');
     this.favoritesButtonSpan = document.getElementById('favoritesButtonSpan');
   }
 
+  init() {
+    if (this._favoriteTickets.length) {
+      this._favoriteTickets.forEach(ticketObject => {
+        this.renderOneFavorite(ticketObject);
+        this.favoritesButton.removeAttribute('disabled');
+        this.favoritesButtonSpan.textContent = `${this._favoriteTickets.length}`;
+      });
+    }
+  }
+
   setToFavorites(ticket) {
     this._favoriteTickets.push(ticket);
+    localStorePlugin.putToLocal(ticket);
     this.renderOneFavorite(ticket);
     this.favoritesButton.removeAttribute('disabled');
     this.favoritesButtonSpan.textContent = `${this._favoriteTickets.length}`;
@@ -21,9 +33,9 @@ class FavoritesStore {
       if (object.uniqueId !== ticketDOM.id) {
         acc.push(object);
       }
-
       return acc;
     }, []);
+    localStorePlugin.updateLocal(this._favoriteTickets);
     this.favoritesButtonSpan.textContent = `${this._favoriteTickets.length}`;
     ticketDOM.parentElement.remove();
     if (!this._favoriteTickets.length && this.collapseFavorites.classList.contains('show')) {
@@ -44,7 +56,7 @@ class FavoritesStore {
   static favoriteTicketTemplate(ticket) {
     const {
       // eslint-disable-next-line camelcase
-      uniqueId, airlineName, departureCityName, destinationCityName, departureDate, price, flight_number,
+      uniqueId, airlineName, departureCityName, destinationCityName, departureDate, price, flight_number, currency
     } = ticket;
     return `
                 <div class="col mt-2">
@@ -63,7 +75,7 @@ class FavoritesStore {
                             </div>
                             <div class="d-flex align-items-center detailsBlock">
                                 <span class="text-monospace text-muted small">${departureDate}</span>
-                                <span class="ml-auto text-danger small currencyField">${currencyUI.moneySighn}${price}</span>
+                                <span class="ml-auto text-danger small currencyField">${currencyUI.moneySighn || currencyUI.computedSign(currency)}${price}</span>
                             </div>
                             <div class="ticket-additional-info">
                                 <span class="font-italic small" > Номер рейса: ${flight_number}.</span>
