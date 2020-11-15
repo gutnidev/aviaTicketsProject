@@ -1,6 +1,6 @@
 # aviaTicketsProject
 ### Demo:
-#### https://gutnivlad.github.io/aviaTicketsProject/dist/index.html
+#### https://gutnidev.github.io/aviaTicketsProject/dist/index.html
 
 
 ------------
